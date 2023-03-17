@@ -11,6 +11,6 @@ namespace DotNet6.DriverStandings.Application.Business.Interface
     {
         public List<Race> ListRaces();
         public Race CreateRace(Race race);
-        public Race GetRace(Race race);
+        public Race GetRaceById(Race race);
     }
 }

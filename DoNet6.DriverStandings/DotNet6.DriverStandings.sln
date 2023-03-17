@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{7A2972FF-6621-4F80-92DB-8D7C6E26821C}"
 	ProjectSection(SolutionItems) = preProject
+		GetRaceById.sql = GetRaceById.sql
 		ListRaces.sql = ListRaces.sql
 	EndProjectSection
 EndProject

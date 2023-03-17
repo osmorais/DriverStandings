@@ -11,6 +11,6 @@ namespace DotNet6.DriverStandings.Domain.DAO
     {
         public Lap CreateLap(Lap lap);
         public Lap GetLap(Lap lap);
-        public Lap GetLapsByDriverId(int driverId);
+        public List<Lap> GetLapsByDriverId(int driverId);
     }
 }

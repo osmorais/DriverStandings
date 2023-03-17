@@ -8,8 +8,11 @@ namespace DotNet6.DriverStandings.Api.ViewModels
     {
         public int RaceId { get; set; }
     }
+    public class RaceResponse : _BaseResponse
+    {
+    }
 
-    public class RaceResponse : _BaseListResponse<Race>
+    public class RaceResponseList : _BaseListResponse<Race>
     {
     }
 }

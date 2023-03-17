@@ -21,14 +21,25 @@ namespace DotNet6.DriverStandings.Application.Business
             return new Infra.Data.DAO.RaceDAO().CreateRace(race);
         }
 
-        public Race GetRace(Race race)
+        public Race GetRaceById(Race race)
         {
-            return new Infra.Data.DAO.RaceDAO().GetRace(race);
+            race = new Infra.Data.DAO.RaceDAO().GetRaceById(race);
+
+            race.Drivers = new Infra.Data.DAO.DriverDAO().GetDriversByRaceId(race.RaceId);
+
+            foreach (Driver driver in race.Drivers)
+            {
+                driver.Laps = new Infra.Data.DAO.LapDAO().GetLapsByDriverId(race.RaceId);
+            }
+
+            return race;
         }
 
         public List<Race> ListRaces()
         {
-            return new Infra.Data.DAO.RaceDAO().ListRaces();
+            var races = new Infra.Data.DAO.RaceDAO().ListRaces();
+
+            return races;
         }
     }
 }

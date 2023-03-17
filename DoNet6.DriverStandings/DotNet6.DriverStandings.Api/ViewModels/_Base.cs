@@ -6,6 +6,12 @@
         {
 
         }
+        public class _BaseResponse
+        {
+            public object Item { get; set; }
+            public bool Success { get; set; }
+            public string Message { get; set; }
+        }
 
         public class _BaseListResponse<T>
         {

@@ -11,6 +11,6 @@ namespace DotNet6.DriverStandings.Domain.DAO
     {
         public Race CreateRace(Race race);
         public List<Race> ListRaces();
-        public Race GetRace(Race race);
+        public Race GetRaceById(Race race);
     }
 }
