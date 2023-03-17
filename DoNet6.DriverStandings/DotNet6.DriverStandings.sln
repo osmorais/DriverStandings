@@ -17,6 +17,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{326EC6D9-BC9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{54182ACE-1448-4520-8556-67A67CB969B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D105C4D4-FE2D-40DC-B04C-F17174AFDAE0}"
+	ProjectSection(SolutionItems) = preProject
+		setDatabase.sql = setDatabase.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{7A2972FF-6621-4F80-92DB-8D7C6E26821C}"
+	ProjectSection(SolutionItems) = preProject
+		ListRaces.sql = ListRaces.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +63,7 @@ Global
 		{D051C31F-D373-407E-A9F6-3E2631D31F37} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
 		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
 		{1E054304-87FA-4BE1-86D6-10BA457BEFC4} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
+		{7A2972FF-6621-4F80-92DB-8D7C6E26821C} = {D105C4D4-FE2D-40DC-B04C-F17174AFDAE0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83F30738-7D40-449F-A418-250715B900A4}

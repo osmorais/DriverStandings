@@ -12,8 +12,9 @@ namespace DotNet6.DriverStandings.Infra.Data.Connection
 {
     public class DatabaseConnection
     {
-        private readonly string connectionString = "Server=127.0.0.1;Port=5432;Database=DriverStandings;User Id=postgres;Password=admin;";
-        //private readonly string connectionString = "Server=localhost\\SQLEXPRESS;Database=DriverStandings;Trusted_Connection=True;TrustServerCertificate=True;";
+        //private readonly string connectionString = "Server=127.0.0.1;Port=5432;Database=DriverStandingsDatabase;User Id=postgres;Password=admin;";
+        private readonly string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=DriverStandingsDatabase";
+
 
         public List<T> ExecuteQueryList<T>(string procedure, DynamicParameters parameters)
         {

@@ -10,15 +10,17 @@ namespace DotNet6.DriverStandings.Domain.Model
     public class Lap
     {
         public int LapId { get; set; }
-        public DateTime Time { get; set; }
+        public int LapNumber { get; set; }
+        public DateTime LapTime { get; set; }
         public double AverageSpeed { get; set; }
 
         public Lap() { }
 
-        public Lap(int Lapid, DateTime time, double averageSpeed)
+        public Lap(int Lapid, DateTime time, int lapNumber, double averageSpeed)
         {
             LapId = Lapid;
-            Time = time;
+            LapTime = time;
+            LapNumber = lapNumber;
             AverageSpeed = averageSpeed;
         }
 

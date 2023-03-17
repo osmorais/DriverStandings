@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DoNet6.DriverStandings.Domain\DotNet6.DriverStandings.Domain.csproj" />
+    <ProjectReference Include="..\DoNet6.DriverStandings.Infra.Data\DotNet6.DriverStandings.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
