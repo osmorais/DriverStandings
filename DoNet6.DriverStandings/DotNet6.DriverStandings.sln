@@ -3,9 +3,56 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.DriverStandings.Application", "DoNet6.DriverStandings.Application\DotNet6.DriverStandings.Application.csproj", "{4A6D8CB5-796E-4E59-9979-A4B73D011125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.DriverStandings.Domain", "DoNet6.DriverStandings.Domain\DotNet6.DriverStandings.Domain.csproj", "{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.DriverStandings.Infra.Data", "DoNet6.DriverStandings.Infra.Data\DotNet6.DriverStandings.Infra.Data.csproj", "{D051C31F-D373-407E-A9F6-3E2631D31F37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.DriverStandings.Infra.IoC", "DoNet6.DriverStandings.Infra.IoC\DotNet6.DriverStandings.Infra.IoC.csproj", "{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.DriverStandings.Api", "DotNet6.DriverStandings.Api\DotNet6.DriverStandings.Api.csproj", "{1E054304-87FA-4BE1-86D6-10BA457BEFC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{54182ACE-1448-4520-8556-67A67CB969B1}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A6D8CB5-796E-4E59-9979-A4B73D011125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6D8CB5-796E-4E59-9979-A4B73D011125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6D8CB5-796E-4E59-9979-A4B73D011125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6D8CB5-796E-4E59-9979-A4B73D011125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D051C31F-D373-407E-A9F6-3E2631D31F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D051C31F-D373-407E-A9F6-3E2631D31F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D051C31F-D373-407E-A9F6-3E2631D31F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D051C31F-D373-407E-A9F6-3E2631D31F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E054304-87FA-4BE1-86D6-10BA457BEFC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E054304-87FA-4BE1-86D6-10BA457BEFC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E054304-87FA-4BE1-86D6-10BA457BEFC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E054304-87FA-4BE1-86D6-10BA457BEFC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A6D8CB5-796E-4E59-9979-A4B73D011125} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
+		{9BDBA2D7-0E8D-4340-92F9-DDFD807A0626} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
+		{D051C31F-D373-407E-A9F6-3E2631D31F37} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
+		{EB2620C8-AB6B-43F0-87A5-8139AF6B96F1} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
+		{1E054304-87FA-4BE1-86D6-10BA457BEFC4} = {326EC6D9-BC94-4F92-BB8D-21B4DCA85EA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83F30738-7D40-449F-A418-250715B900A4}

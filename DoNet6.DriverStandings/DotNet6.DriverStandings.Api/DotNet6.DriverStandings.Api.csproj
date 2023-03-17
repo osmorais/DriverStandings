@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DoNet6.DriverStandings.Infra.IoC\DotNet6.DriverStandings.Infra.IoC.csproj" />
+  </ItemGroup>
+
 </Project>
