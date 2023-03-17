@@ -1,4 +1,4 @@
-﻿using DotNet6.DriverStandings.Api.ViewModels;
+﻿using DotNet6.DriverStandings.Api.TransferObjects;
 using DotNet6.DriverStandings.Application.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace DotNet6.DriverStandings.Api.Controllers
     {
 
         [HttpGet]
-        public ViewModels.RaceResponseList ListRaces()
+        public TransferObjects.RaceResponseList ListRaces()
         {
-            ViewModels.RaceResponseList raceResponse = new ViewModels.RaceResponseList();
+            TransferObjects.RaceResponseList raceResponse = new TransferObjects.RaceResponseList();
 
             try
             {
@@ -31,9 +31,9 @@ namespace DotNet6.DriverStandings.Api.Controllers
         }
 
         [HttpPost]
-        public ViewModels.RaceResponse GetRaceById([FromBody] RaceRequest raceRequest)
+        public TransferObjects.RaceResponse GetRaceById([FromBody] RaceRequest raceRequest)
         {
-            ViewModels.RaceResponse raceResponse = new ViewModels.RaceResponse();
+            TransferObjects.RaceResponse raceResponse = new TransferObjects.RaceResponse();
 
             try
             {

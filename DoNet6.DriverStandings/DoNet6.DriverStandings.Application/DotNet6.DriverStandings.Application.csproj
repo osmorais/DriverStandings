@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Validations\" />
+    <Folder Include="DTO %28Remover%29\Validations\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿using DotNet6.DriverStandings.Domain.Model;
 using System.Reflection;
-using static DotNet6.DriverStandings.Api.ViewModels._Base;
+using static DotNet6.DriverStandings.Api.TransferObjects._Base;
 
-namespace DotNet6.DriverStandings.Api.ViewModels
+namespace DotNet6.DriverStandings.Api.TransferObjects
 {
     public class RaceRequest : _BaseRequest
     {

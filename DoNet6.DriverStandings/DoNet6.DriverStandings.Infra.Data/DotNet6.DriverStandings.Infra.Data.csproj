@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
+    <Folder Include="Mappings %28Remover%29\" />
   </ItemGroup>
 
   <ItemGroup>

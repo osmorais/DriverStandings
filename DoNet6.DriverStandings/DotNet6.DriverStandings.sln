@@ -19,13 +19,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{54182ACE-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D105C4D4-FE2D-40DC-B04C-F17174AFDAE0}"
 	ProjectSection(SolutionItems) = preProject
-		setDatabase.sql = setDatabase.sql
+		Database\setDatabase.sql = Database\setDatabase.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{7A2972FF-6621-4F80-92DB-8D7C6E26821C}"
 	ProjectSection(SolutionItems) = preProject
-		GetRaceById.sql = GetRaceById.sql
-		ListRaces.sql = ListRaces.sql
+		Database\GetDriverById.sql = Database\GetDriverById.sql
+		Database\GetDriversByRaceId.sql = Database\GetDriversByRaceId.sql
+		Database\GetLapById.sql = Database\GetLapById.sql
+		Database\GetLapsByDriverId.sql = Database\GetLapsByDriverId.sql
+		Database\GetRaceById.sql = Database\GetRaceById.sql
+		Database\ListDrivers.sql = Database\ListDrivers.sql
+		Database\ListRaces.sql = Database\ListRaces.sql
 	EndProjectSection
 EndProject
 Global

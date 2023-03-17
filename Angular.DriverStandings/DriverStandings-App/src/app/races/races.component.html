@@ -13,18 +13,17 @@
         <tr>
           <th>Id</th>
           <th>Numero de Voltas</th>
-          <th>Data</th>
+          <!-- <th>Data</th> -->
         </tr>
       </thead>
-      <!-- <tbody *ngIf="registrosFiltrados && registrosFiltrados.length">
-        <tr *ngFor="let registro of registrosFiltrados">
-          <tr>
-          <td>{{registro.id}}</td>
-          <td>{{registro.valor}}</td>
-          <td>{{registro.data | DateTimeFormatPipe}}</td>
+      <tbody *ngIf="races && races.length">
+        <tr *ngFor="let race of races">
+          <td>{{race.raceId}}</td>
+          <td>{{race.numberOfLaps}}</td>
+          <!-- <td>{{x.data | DateTimeFormatPipe}}</td> -->
         </tr>
-      </tbody> -->
-      <tfoot *ngIf="true">
+      </tbody>
+      <tfoot *ngIf="!races || races.length < 1">
         <tr>
           <td colspan="7" class="text-center">
             Nenhum registro encontrado!

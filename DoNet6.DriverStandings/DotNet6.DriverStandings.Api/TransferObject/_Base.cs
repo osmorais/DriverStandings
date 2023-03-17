@@ -1,4 +1,4 @@
-﻿namespace DotNet6.DriverStandings.Api.ViewModels
+﻿namespace DotNet6.DriverStandings.Api.TransferObjects
 {
     public class _Base
     {
