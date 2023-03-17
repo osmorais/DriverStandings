@@ -1,0 +1,35 @@
+<div>
+  <div id="races">
+    <div>
+        <h1>CORRIDAS</h1>
+    </div>
+    <div>
+      <button type="button">
+        <i></i>&nbsp;Cadastrar nova corrida
+      </button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Numero de Voltas</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <!-- <tbody *ngIf="registrosFiltrados && registrosFiltrados.length">
+        <tr *ngFor="let registro of registrosFiltrados">
+          <tr>
+          <td>{{registro.id}}</td>
+          <td>{{registro.valor}}</td>
+          <td>{{registro.data | DateTimeFormatPipe}}</td>
+        </tr>
+      </tbody> -->
+      <tfoot *ngIf="true">
+        <tr>
+          <td colspan="7" class="text-center">
+            Nenhum registro encontrado!
+          </td>
+      </tfoot>
+    </table>
+  </div>
+</div>
