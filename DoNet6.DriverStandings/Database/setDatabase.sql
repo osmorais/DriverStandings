@@ -7,7 +7,7 @@ CREATE TABLE Race (
 
 CREATE TABLE Driver (
 	DriverId serial PRIMARY KEY,
-	DriverCode VARCHAR ( 50 ) UNIQUE NOT NULL,
+	DriverCode VARCHAR ( 50 ) NOT NULL,
 	Name VARCHAR ( 50 ) NOT NULL,
 	TotalTime TIME,
 	RaceId INT NOT NULL,

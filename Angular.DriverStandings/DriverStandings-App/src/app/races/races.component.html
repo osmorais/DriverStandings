@@ -1,4 +1,10 @@
 <div>
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+    </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+  </ngx-loading>
   <div id="races">
     <div>
       <div>
@@ -15,14 +21,14 @@
     <table class="table table-striped">
       <thead class="thead-light">
         <tr>
-          <th>Id</th>
+          <th>#</th>
           <th>Numero de Voltas</th>
           <th>Detalhe</th>
         </tr>
       </thead>
       <tbody *ngIf="races && races.length">
-        <tr *ngFor="let race of races">
-          <td>{{race.raceId}}</td>
+        <tr *ngFor="let race of races; let i = index">
+          <td>{{i+1}}</td>
           <td>{{race.numberOfLaps}}</td>
           <td>
             <button type="button" class="btn btn-outline-primary" (click)="openPage(race.raceId)">
