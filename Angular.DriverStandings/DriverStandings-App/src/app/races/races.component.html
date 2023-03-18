@@ -1,26 +1,32 @@
 <div>
   <div id="races">
     <div>
-        <h1>CORRIDAS</h1>
+        <div>
+          <h1>CORRIDAS</h1>
+        </div>
     </div>
-    <div>
-      <button type="button">
-        <i></i>&nbsp;Cadastrar nova corrida
+    <div class="form-row mt-2 mb-2 new-button">
+      <button type="button" class="btn btn-outline-primary">
+        UPLOAD NOVO ARQUIVO DE LOG
       </button>
     </div>
-    <table>
-      <thead>
+    <table class="table table-striped">
+      <thead class="thead-light">
         <tr>
           <th>Id</th>
           <th>Numero de Voltas</th>
-          <!-- <th>Data</th> -->
+          <th>Detalhe</th>
         </tr>
       </thead>
       <tbody *ngIf="races && races.length">
         <tr *ngFor="let race of races">
           <td>{{race.raceId}}</td>
           <td>{{race.numberOfLaps}}</td>
-          <!-- <td>{{x.data | DateTimeFormatPipe}}</td> -->
+          <td>
+            <button type="button" class="btn btn-outline-primary" (click)="openPage(race.raceId)">
+              <i class="fa fa-plus-circle"></i>&nbsp;VER CLASSIFICAÇÃO
+            </button>
+          </td>
         </tr>
       </tbody>
       <tfoot *ngIf="!races || races.length < 1">
