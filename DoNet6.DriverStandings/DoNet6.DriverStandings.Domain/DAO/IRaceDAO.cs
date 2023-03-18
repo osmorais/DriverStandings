@@ -9,7 +9,7 @@ namespace DotNet6.DriverStandings.Domain.DAO
 {
     public interface IRaceDAO
     {
-        public Race CreateRace(Race race);
+        public void CreateRace(Race race);
         public List<Race> ListRaces();
         public Race GetRaceById(Race race);
     }

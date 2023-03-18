@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNet6.DriverStandings.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -31,6 +32,42 @@ namespace DotNet6.DriverStandings.Domain.Util
                 }
                 return objT;
             }).ToList();
+        }
+
+        public static List<Lap> DataTableToListLap(DataTable dt)
+        {
+            var laps = new List<Lap>();
+            foreach (DataRow row in dt.Rows)
+            {
+                Lap lap = new Lap
+                {
+                    LapId = Convert.ToInt32(row["LapId"]),
+                    LapTime = DateTime.Parse(row["LapTime"].ToString()),
+                    AverageSpeed = double.Parse(row["AverageSpeed"].ToString()),
+                    LapNumber = Convert.ToInt32(row["LapNumber"])
+                };
+
+                laps.Add(lap);
+            }
+            return laps;
+        }
+
+        public static List<Driver> DataTableToListDriver(DataTable dt)
+        {
+            var drivers = new List<Driver>();
+            foreach (DataRow row in dt.Rows)
+            {
+                Driver drive = new Driver
+                {
+                    DriverId = Convert.ToInt32(row["DriverId"]),
+                    DriverCode = row["DriverCode"].ToString(),
+                    Name = row["Name"].ToString(),
+                    TotalTime = DateTime.Parse(row["TotalTime"].ToString())
+                };
+
+                drivers.Add(drive);
+            }
+            return drivers;
         }
 
         public static T DataTableToObject<T>(DataTable dt)

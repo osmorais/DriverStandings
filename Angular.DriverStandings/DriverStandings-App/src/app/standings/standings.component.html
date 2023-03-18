@@ -20,9 +20,16 @@
           <th>Tempo</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="race.drivers && race.drivers.length">
+        <tr *ngFor="let driver of race.drivers; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{driver.driverCode}}</td>
+          <td>{{driver.name}}</td>
+          <td>{{driver.laps.length}}</td>
+          <td>{{returnHours(driver.totalTime)}}</td>
+        </tr>
       </tbody>
-      <tfoot *ngIf="true">
+      <tfoot *ngIf="!race.drivers || race.drivers.length < 1">
         <tr>
           <td colspan="7" class="text-center">
             Nenhum registro encontrado!

@@ -15,10 +15,41 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
     {
         private static readonly string SELECT_LAPS_BY_DRIVER_ID = "SELECT * FROM GetLapsByDriverId({0});";
         private static readonly string SELECT_LAP_BY_ID = "SELECT * FROM GetLapById({0});";
+        private static readonly string INSERT_LAP = "INSERT INTO LAP (LAPTIME, AVERAGESPEED, LAPNUMBER, DRIVERID) VALUES (:laptime, :averagespeed, :lapnumber, :driverid) {0};";
 
-        public Lap CreateLap(Lap lap)
+        public void CreateLap(Lap lap, int driverid)
         {
-            throw new NotImplementedException();
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(INSERT_LAP, "RETURNING LapId");
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("laptime", lap.LapTime));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("averagespeed", lap.AverageSpeed));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("lapnumber", lap.LapNumber));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("driverid", driverid));
+                        lap.LapId = (int)pgsqlcommand.ExecuteScalar();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
         }
 
         public Lap GetLap(Lap lap)
@@ -86,7 +117,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return Domain.Util.Utils.DataTableToList<Lap>(dt);
+            return Domain.Util.Utils.DataTableToListLap(dt);
         }
     }
 }

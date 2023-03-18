@@ -5,7 +5,8 @@ BEGIN
 			d.DriverId				as DriverId,
 			d.DriverCode			as DriverCode,
 			d.Name					as Name,
-			d.TotalTime				as TotalTime
+			d.TotalTime				as TotalTime,
+			d.RaceId				as RaceId
 		FROM Driver as d
 		ORDER BY d.DriverId;
 	RETURN;

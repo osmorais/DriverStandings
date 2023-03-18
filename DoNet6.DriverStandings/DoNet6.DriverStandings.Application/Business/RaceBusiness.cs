@@ -28,9 +28,9 @@ namespace DotNet6.DriverStandings.Application.Business
                                             DriverCode = record.FirstOrDefault().DriverCode,
                                             Name = record.FirstOrDefault().DriverName,
                                             TotalTime = new DateTime(record.Sum(r => r.LapTime.Ticks)),
-                                            VoltasCompletadas = record.Max(r => r.LapNumber),
+                                            CompletedLaps = record.Count(),
                                         })
-                                        .OrderByDescending(r => r.VoltasCompletadas)
+                                        .OrderByDescending(r => r.CompletedLaps)
                                         .ThenBy(r => r.TotalTime)
                                         .ToList();
 
@@ -62,7 +62,9 @@ namespace DotNet6.DriverStandings.Application.Business
                 NumberOfLaps= drivers[0].Laps.Count()
             };
 
-            return new Infra.Data.DAO.RaceDAO().CreateRace(race);
+            new Infra.Data.DAO.RaceDAO().CreateRace(race);
+
+            return race;
         }
 
         public Race GetRaceById(Race race)
@@ -73,7 +75,7 @@ namespace DotNet6.DriverStandings.Application.Business
 
             foreach (Driver driver in race.Drivers)
             {
-                driver.Laps = new Infra.Data.DAO.LapDAO().GetLapsByDriverId(race.RaceId);
+                driver.Laps = new Infra.Data.DAO.LapDAO().GetLapsByDriverId(driver.DriverId);
             }
 
             return race;

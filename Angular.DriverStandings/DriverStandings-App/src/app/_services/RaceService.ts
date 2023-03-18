@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RaceRequest, RaceResponse, RaceResponseList } from './_transferObjects/Race';
+import { Race } from '../_models/Race';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,12 @@ export class RaceService {
     let raceRequest = new RaceRequest();
     raceRequest.Item = fileValue;
     return this.http.post<RaceResponse>(`${this.baseURL}/Race/UploadRaceByFile`, raceRequest);
+  }
+
+  getRace(raceid: number): Observable<RaceResponse>{
+    let raceRequest = new RaceRequest();
+    raceRequest.Item = "";
+    raceRequest.RaceID = raceid;
+    return this.http.post<RaceResponse>(`${this.baseURL}/Race/GetRaceById`, raceRequest);
   }
 }

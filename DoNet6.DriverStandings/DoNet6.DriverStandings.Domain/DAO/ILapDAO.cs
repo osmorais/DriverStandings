@@ -9,7 +9,7 @@ namespace DotNet6.DriverStandings.Domain.DAO
 {
     public interface ILapDAO
     {
-        public Lap CreateLap(Lap lap);
+        public void CreateLap(Lap lap, int driverid);
         public Lap GetLap(Lap lap);
         public List<Lap> GetLapsByDriverId(int driverId);
     }

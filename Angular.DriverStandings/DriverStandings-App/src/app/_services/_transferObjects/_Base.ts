@@ -7,7 +7,7 @@ export class _BaseRequest {
 }
 
 export class _BaseResponse {
-  public Item: any
+  public item: any
   public succsess: boolean = false;
   public message: string = '';
 

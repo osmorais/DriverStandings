@@ -10,6 +10,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DotNet6.DriverStandings.Infra.Data.DAO
 {
@@ -17,6 +18,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
     {
         private static readonly string SELECT_RACES = "SELECT * FROM ListRaces();";
         private static readonly string SELECT_RACE_BY_ID = "SELECT * FROM GetRaceById({0});";
+        private static readonly string INSERT_RACE = "INSERT INTO RACE (NUMBEROFLAPS) VALUES (:numberoflaps) {0};";
 
         public List<Race> ListRaces()
         {
@@ -52,9 +54,41 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
             return Domain.Util.Utils.DataTableToList<Race>(dt);
         }
 
-        public Race CreateRace(Race race)
+        public void CreateRace(Race race)
         {
-            throw new NotImplementedException();
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {                
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(INSERT_RACE, "RETURNING RaceId");
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("numberoflaps", race.NumberOfLaps));
+                        race.RaceId = (int)pgsqlcommand.ExecuteScalar();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+
+                foreach(var driver in race.Drivers)
+                {
+                    new DriverDAO().CreateDriver(driver, race.RaceId);
+                }
+            }
         }
 
         public Race GetRaceById(Race race)

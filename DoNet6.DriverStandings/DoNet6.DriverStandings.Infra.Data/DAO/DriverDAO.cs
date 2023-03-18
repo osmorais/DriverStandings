@@ -16,9 +16,45 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
         private static readonly string SELECT_DRIVERS = "SELECT * FROM ListDrivers();";
         private static readonly string SELECT_DRIVER_BY_ID = "SELECT * FROM GetDriverById({0});";
         private static readonly string SELECT_DRIVERS_BY_RACEID = "SELECT * FROM GetDriversByRaceId({0});";
-        public Driver CreateDriver(Driver driver)
+        private static readonly string INSERT_DRIVER = "INSERT INTO DRIVER (DRIVERCODE, NAME, TOTALTIME, RACEID) VALUES (:drivercode, :name, :totaltime, :raceid) {0};";
+        public void CreateDriver(Driver driver, int raceid)
         {
-            throw new NotImplementedException();
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {             
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(INSERT_DRIVER, "RETURNING DriverId");
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("drivercode", driver.DriverCode));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("name", driver.Name));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("totaltime", driver.TotalTime));
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("raceid", raceid));
+                        driver.DriverId = (int)pgsqlcommand.ExecuteScalar();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+
+                foreach (var lap in driver.Laps)
+                {
+                    new LapDAO().CreateLap(lap, driver.DriverId);
+                }
+            }
         }
 
         public Driver GetDriver(Driver driver)
@@ -86,7 +122,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return Domain.Util.Utils.DataTableToList<Driver>(dt);
+            return Domain.Util.Utils.DataTableToListDriver(dt);
         }
 
         public List<Driver> GetDriversByRaceId(int raceId)
@@ -120,7 +156,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return Domain.Util.Utils.DataTableToList<Driver>(dt);
+            return Domain.Util.Utils.DataTableToListDriver(dt);
         }
     }
 }

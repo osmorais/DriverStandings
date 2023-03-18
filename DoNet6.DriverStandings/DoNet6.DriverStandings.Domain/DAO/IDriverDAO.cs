@@ -9,7 +9,7 @@ namespace DotNet6.DriverStandings.Domain.DAO
 {
     public interface IDriverDAO
     {
-        public Driver CreateDriver(Driver driver);
+        public void CreateDriver(Driver driver, int raceid);
         public Driver GetDriver(Driver driver);
         public List<Driver> ListDrivers();
         public List<Driver> GetDriversByRaceId(int RaceId);

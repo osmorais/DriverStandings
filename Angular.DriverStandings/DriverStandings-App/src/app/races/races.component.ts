@@ -63,7 +63,6 @@ export class RacesComponent {
             this.raceService.postRegra(text).subscribe({
               next: _response => {
                 // this.races = _response.Item;
-                console.log(this.races);
               },
               error: err => {
                 // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
