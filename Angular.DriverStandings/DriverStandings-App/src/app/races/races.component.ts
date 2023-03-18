@@ -10,6 +10,7 @@ import { RaceService } from '../_services/RaceService'
 })
 export class RacesComponent {
   races: Race[];
+  fileName: string = '';
 
   constructor(private raceService: RaceService,
               public router: Router){
@@ -40,6 +41,37 @@ export class RacesComponent {
         console.error(err);
       }
     })
+  }
+
+  onFileSelected(event: any) {
+
+    const file:File = event.target.files[0];
+
+    if (file) {
+        this.fileName = file.name;
+        const formData = new FormData();
+        formData.append("thumbnail", file);
+
+        const reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onload = (e: any) => {
+            const text = e.target.result;
+            console.log(text);
+
+            this.raceService.postRegra(text).subscribe({
+              next: _response => {
+                // this.races = _response.Item;
+                console.log(this.races);
+              },
+              error: err => {
+                // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
+                console.error(err);
+              }
+            })
+        };
+    }
   }
 
 }

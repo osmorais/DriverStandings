@@ -1,14 +1,16 @@
 <div>
   <div id="races">
     <div>
-        <div>
-          <h1>CORRIDAS</h1>
-        </div>
+      <div>
+        <h1>CORRIDAS</h1>
+      </div>
     </div>
     <div class="form-row mt-2 mb-2 new-button">
-      <button type="button" class="btn btn-outline-primary">
+      <!-- <button type="button" class="btn btn-outline-primary">
         UPLOAD NOVO ARQUIVO DE LOG
-      </button>
+      </button> -->
+       Faça o upload de um novo arquivo de log.
+      &nbsp;&nbsp;<input type="file" (change)="onFileSelected($event)">
     </div>
     <table class="table table-striped">
       <thead class="thead-light">
@@ -24,7 +26,7 @@
           <td>{{race.numberOfLaps}}</td>
           <td>
             <button type="button" class="btn btn-outline-primary" (click)="openPage(race.raceId)">
-              <i class="fa fa-plus-circle"></i>&nbsp;VER CLASSIFICAÇÃO
+              VER CLASSIFICAÇÃO
             </button>
           </td>
         </tr>

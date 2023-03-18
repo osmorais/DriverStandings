@@ -10,7 +10,7 @@ namespace DotNet6.DriverStandings.Application.Business.Interface
     public interface IRaceBusiness
     {
         public List<Race> ListRaces();
-        public Race CreateRace(Race race);
+        public Race UploadRace(string fileString);
         public Race GetRaceById(Race race);
     }
 }

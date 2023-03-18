@@ -52,7 +52,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToObject<Lap>(dt);
+            return Domain.Util.Utils.DataTableToObject<Lap>(dt);
         }
 
         public List<Lap> GetLapsByDriverId(int driverId)
@@ -86,7 +86,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToList<Lap>(dt);
+            return Domain.Util.Utils.DataTableToList<Lap>(dt);
         }
     }
 }

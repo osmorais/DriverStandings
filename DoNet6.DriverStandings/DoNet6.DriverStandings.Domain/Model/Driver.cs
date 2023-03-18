@@ -33,18 +33,13 @@ namespace DotNet6.DriverStandings.Domain.Model
         {
             DomainValidationException.When(this.DriverId < 0, "DriverId invalido.");
             DomainValidationException.When(string.IsNullOrEmpty(this.DriverCode), "Codigo do piloto vazio.");
-            DomainValidationException.When(hasSpecialCharacters(this.Name), "Nome do piloto contem caracteres especiais.");
+            DomainValidationException.When(Domain.Util.Utils.hasSpecialCharacters(this.Name), "Nome do piloto contem caracteres especiais.");
             int hasDigit = 0;
             foreach (char c in this.Name)
             {
                 if (Char.IsDigit(c)) { hasDigit++; }
             }
             DomainValidationException.When(hasDigit > 0, "Nome do piloto contem numero.");
-        }
-
-        private bool hasSpecialCharacters(string name)
-        {
-            return Regex.IsMatch(name, (@"[^a-zA-Z0-9' ']"));
         }
     }
 }

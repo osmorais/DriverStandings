@@ -49,7 +49,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToList<Race>(dt);
+            return Domain.Util.Utils.DataTableToList<Race>(dt);
         }
 
         public Race CreateRace(Race race)
@@ -88,7 +88,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToObject<Race>(dt);
+            return Domain.Util.Utils.DataTableToObject<Race>(dt);
         }
     }
 }

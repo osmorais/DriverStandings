@@ -52,7 +52,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToObject<Driver>(dt);
+            return Domain.Util.Utils.DataTableToObject<Driver>(dt);
         }
 
         public List<Driver> ListDrivers()
@@ -86,7 +86,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToList<Driver>(dt);
+            return Domain.Util.Utils.DataTableToList<Driver>(dt);
         }
 
         public List<Driver> GetDriversByRaceId(int raceId)
@@ -120,7 +120,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                 pgsqlConnection.Close();
             }
 
-            return new Infra.Data.Util.Utils().DataTableToList<Driver>(dt);
+            return Domain.Util.Utils.DataTableToList<Driver>(dt);
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public class _BaseRequest
         {
-
+            public object Item { get; set; }
         }
         public class _BaseResponse
         {
