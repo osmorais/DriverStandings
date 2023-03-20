@@ -44,6 +44,7 @@ namespace DotNet6.DriverStandings.Domain.Model
             DomainValidationException.When(string.IsNullOrEmpty(this.DriverCode), "Codigo do piloto vazio.");
             DomainValidationException.When(Domain.Util.Utils.hasSpecialCharacters(this.Name), "Nome do piloto contem caracteres especiais.");
             DomainValidationException.When(Domain.Util.Utils.hasNumber(this.Name), "Nome do piloto contem numero.");
+            DomainValidationException.When(this.Laps.Count() <= 0, "O piloto nao tem voltas.");
         }
     }
 }

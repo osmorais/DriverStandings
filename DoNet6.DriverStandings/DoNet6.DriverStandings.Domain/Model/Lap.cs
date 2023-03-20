@@ -37,6 +37,7 @@ namespace DotNet6.DriverStandings.Domain.Model
         public void Validation()
         {
             DomainValidationException.When(this.LapId < 0, "LapId invalido.");
+            DomainValidationException.When(this.LapNumber < 0, "Numero da volta invalida.");
             DomainValidationException.When(this.AverageSpeed < 0, "Velocidade media da volta invalida.");
         }
     }
