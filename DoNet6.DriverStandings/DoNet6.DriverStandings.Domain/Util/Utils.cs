@@ -93,14 +93,25 @@ namespace DotNet6.DriverStandings.Domain.Util
             }).FirstOrDefault();
         }
 
-        public static DateTime timeFormat(TimeSpan tempo)
+        public static DateTime timeFormat(TimeSpan time)
         {
-            return DateTime.Parse($"{tempo.Hours:D2}:{tempo.Minutes:D2}:{tempo.Seconds:D2}.{tempo.Milliseconds:D3}");
+            return DateTime.Parse($"{time.Hours:D2}:{time.Minutes:D2}:{time.Seconds:D2}.{time.Milliseconds:D3}");
         }
 
-        public static bool hasSpecialCharacters(string name)
+        public static bool hasSpecialCharacters(string text)
         {
-            return Regex.IsMatch(name, (@"[^a-zA-Z0-9' ']"));
+            return Regex.IsMatch(text, (@"[^a-zA-Z0-9' '\.]"));
+        }
+
+        public static bool hasNumber(string text)
+        {
+            int hasDigit = 0;
+            foreach (char c in text)
+            {
+                if (Char.IsDigit(c)) { hasDigit++; }
+            }
+
+            return hasDigit > 0;
         }
     }
 }

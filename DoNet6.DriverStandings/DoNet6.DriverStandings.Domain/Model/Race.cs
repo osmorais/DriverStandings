@@ -24,10 +24,19 @@ namespace DotNet6.DriverStandings.Domain.Model
             this.Validation();
         }
 
+        public Race(int numberOfLaps, List<Driver> drivers)
+        {
+            NumberOfLaps = numberOfLaps;
+            Drivers = drivers;
+
+            this.Validation();
+        }
+
         public void Validation()
         {
             DomainValidationException.When(this.RaceId < 0, "RaceId invalido.");
             DomainValidationException.When(this.NumberOfLaps < 0, "Numero de voltas invalido.");
+            DomainValidationException.When(this.Drivers.Count() <= 0, "A corrida nao tem pilotos.");
         }
     }
 }

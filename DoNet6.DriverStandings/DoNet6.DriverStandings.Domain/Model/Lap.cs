@@ -22,8 +22,17 @@ namespace DotNet6.DriverStandings.Domain.Model
             LapTime = time;
             LapNumber = lapNumber;
             AverageSpeed = averageSpeed;
-        }
 
+            this.Validation();
+        }
+        public Lap(DateTime time, int lapNumber, double averageSpeed)
+        {
+            LapTime = time;
+            LapNumber = lapNumber;
+            AverageSpeed = averageSpeed;
+
+            this.Validation();
+        }
 
         public void Validation()
         {

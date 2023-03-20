@@ -29,17 +29,21 @@ namespace DotNet6.DriverStandings.Domain.Model
             this.Validation();
         }
 
+        public Driver(string driverCode, string name, DateTime totalTime)
+        {
+            this.DriverCode = driverCode;
+            this.Name = name;
+            this.TotalTime = totalTime;
+
+            this.Validation();
+        }
+
         public void Validation()
         {
             DomainValidationException.When(this.DriverId < 0, "DriverId invalido.");
             DomainValidationException.When(string.IsNullOrEmpty(this.DriverCode), "Codigo do piloto vazio.");
             DomainValidationException.When(Domain.Util.Utils.hasSpecialCharacters(this.Name), "Nome do piloto contem caracteres especiais.");
-            int hasDigit = 0;
-            foreach (char c in this.Name)
-            {
-                if (Char.IsDigit(c)) { hasDigit++; }
-            }
-            DomainValidationException.When(hasDigit > 0, "Nome do piloto contem numero.");
+            DomainValidationException.When(Domain.Util.Utils.hasNumber(this.Name), "Nome do piloto contem numero.");
         }
     }
 }

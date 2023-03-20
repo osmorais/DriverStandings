@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNet6.DriverStandings.Domain.Validations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,29 +20,55 @@ namespace DotNet6.DriverStandings.Domain.Model
         {
             string[] fileLines = fileString.Split('\n');
 
+            if (fileLines.Count() <= 2)
+                throw new DomainValidationException("Arquivo fora da formatação esperada.");
+
             var records = new List<RecordLog>();
 
-            foreach (string line in fileLines)
+            try
             {
-                if (line == fileLines[0] || line.Length <= 2)
-                    continue;
-
-                string[] fields = line.Split(';');
-
-                var record = new RecordLog()
+                foreach (string line in fileLines)
                 {
-                    Time = TimeSpan.Parse(fields[0]),
-                    DriverCode = fields[1].Split("–")[0].Trim(),
-                    DriverName = fields[1].Split("–")[1].Trim(),
-                    LapNumber = int.Parse(fields[2]),
-                    LapTime = TimeSpan.Parse($"00:{fields[3]}"),
-                    AverageSpeed = double.Parse(fields[4])
-                };
+                    if (line == fileLines[0] || line.Length <= 2)
+                        continue;
 
-                records.Add(record);
+                    string[] fields = line.Split(';');
+
+                    if (fields.Count() < 5)
+                        throw new DomainValidationException("Linha do arquivo sem todos os campos necessarios.");
+
+                    var record = new RecordLog()
+                    {
+                        Time = TimeSpan.Parse(fields[0]),
+                        DriverCode = fields[1].Split("–")[0].Trim(),
+                        DriverName = fields[1].Split("–")[1].Trim(),
+                        LapNumber = int.Parse(fields[2]),
+                        LapTime = TimeSpan.Parse($"00:{fields[3]}"),
+                        AverageSpeed = double.Parse(fields[4])
+                    };
+
+                    this.Validation(record);
+
+                    records.Add(record);
+                }
+            }
+            catch (DomainValidationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw new DomainValidationException(string.Format("Erro ao converter o arquivo de upload. -- Message: {0}", ex.Message));
             }
 
             return records;
+        }
+
+        public void Validation(RecordLog recordLog)
+        {
+            DomainValidationException.When(string.IsNullOrEmpty(recordLog.DriverCode), "Codigo do piloto vazio.");
+            DomainValidationException.When(Domain.Util.Utils.hasSpecialCharacters(recordLog.DriverName), "Nome do piloto contem caracteres especiais.");
+            DomainValidationException.When(Domain.Util.Utils.hasNumber(recordLog.DriverName), "Nome do piloto contem numero.");
         }
     }
 }

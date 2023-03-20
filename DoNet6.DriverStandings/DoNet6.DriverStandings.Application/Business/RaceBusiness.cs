@@ -37,12 +37,7 @@ namespace DotNet6.DriverStandings.Application.Business
             var drivers = new List<Driver>();
             foreach (var item in orderedDrivers)
             {
-                var driver = new Driver()
-                {
-                    DriverCode = item.DriverCode,
-                    Name = item.Name,
-                    TotalTime = item.TotalTime
-                };
+                var driver = new Driver(item.DriverCode, item.Name, item.TotalTime);
 
                 driver.Laps = records.Where(d => d.DriverCode == driver.DriverCode)
                                         .Select(lap => new Lap
@@ -56,11 +51,7 @@ namespace DotNet6.DriverStandings.Application.Business
 
             }
 
-            var race = new Race()
-            {
-                Drivers= drivers,
-                NumberOfLaps= drivers[0].Laps.Count()
-            };
+            var race = new Race(drivers[0].Laps.Count(), drivers);
 
             new Infra.Data.DAO.RaceDAO().CreateRace(race);
 
