@@ -1,6 +1,12 @@
 # DriverStandings
-Aplicação utilizando Angular 15 com TypeScript no frontend, com .NET 6 no backend e um banco de dados postgreSQL.
+Aplicação utilizando Angular com TypeScript no frontend, com .NET 6 no backend e um banco de dados postgreSQL.
 
+    Angular CLI: 15.2.4
+    Node: 18.15.0
+    Package Manager: npm 9.5.0
+    OS: win32 x64
+    Angular: 15.2.3
+    
 # Descrição do projeto
 - O que o aplicativo faz?<br/><br/>
     O usuario faz o upload de um arquivo de log de uma corrida de Kart, a partir desse arquivo o sistema gera a classificação dos corredores.
@@ -12,13 +18,8 @@ Aplicação utilizando Angular 15 com TypeScript no frontend, com .NET 6 no back
 
 # Instalação e execução do projeto
 - Instalação Frontend:
+  - Realizar o download e instalação do node v18.15
 ``` 
-    Angular CLI: 15.2.4
-    Node: 18.15.0
-    Package Manager: npm 9.5.0
-    OS: win32 x64
-
-    download node v18.15
     npm install -g @angular/cli
     npm install --save ngx-bootstrap 
     npm install bootstrap@4
