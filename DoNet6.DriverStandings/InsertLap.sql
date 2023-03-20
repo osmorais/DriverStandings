@@ -1,0 +1,12 @@
+﻿
+CREATE OR REPLACE FUNCTION InsertLap(timelap TIME, speed NUMERIC(5,2), number INT, idDriver INT) RETURNS SETOF integer AS $$
+BEGIN
+	RETURN QUERY 
+		INSERT INTO LAP (LAPTIME, AVERAGESPEED, LAPNUMBER, DRIVERID) 
+		VALUES (timelap, speed, number, idDriver) RETURNING LapId;
+	RETURN;
+END;
+$$ LANGUAGE 'plpgsql'
+
+
+--SELECT INSERTLAP('22:01:02.852', 44.4, 2, 75);

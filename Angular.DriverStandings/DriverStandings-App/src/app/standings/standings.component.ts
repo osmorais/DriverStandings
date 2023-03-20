@@ -35,17 +35,17 @@ export class StandingsComponent {
         this.loading = false;
         if(_response.success){
           this.race = _response.item;
-          this.toastr.success(`classificações recuperadas!\n` , _response.message);
+          this.toastr.success(_response.message , `classificações recuperadas!\n`);
         }
         else{
-          this.toastr.error('Erro ao tentar recuperar as classificações.\n' , _response.message);
+          this.toastr.error(_response.message , 'Erro ao tentar recuperar as classificações.\n');
         }
       },
       error: err => {
         // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
         this.loading = false;
         console.error(err);
-        this.toastr.error('Erro ao tentar recuperar as classificações.\n' , err.message);
+        this.toastr.error(err.message , 'Erro ao tentar recuperar as classificações.\n');
       }
     })
   }

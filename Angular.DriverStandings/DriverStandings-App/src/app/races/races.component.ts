@@ -42,16 +42,16 @@ export class RacesComponent {
         if(_response.success){
           this.races = [];
           this.listRaces();
-          this.toastr.success(`Corrida excluida!\n` , _response.message);
+          this.toastr.success(_response.message , `Corrida excluida!\n`);
         }
         else{
-          this.toastr.error('Erro ao tentar excluir a corrida.\n' , _response.message);
+          this.toastr.error(_response.message , 'Erro ao tentar excluir a corrida.\n');
         }
       },
       error: err => {
         this.loading = false;
         console.error(err);
-        this.toastr.error('Erro ao tentar excluir a corrida.\n' , err.message);
+        this.toastr.error(err.message , 'Erro ao tentar excluir a corrida.\n');
       }
     })
   }
@@ -64,16 +64,16 @@ export class RacesComponent {
 
         if(_response.success){
           this.races = _response.items;
-          this.toastr.success(`Corridas Recuperadas!\n` , _response.message);
+          this.toastr.success(_response.message , `Corridas Recuperadas!\n`);
         }
         else{
-          this.toastr.error('Erro ao tentar recuperar as corridas.\n' , _response.message);
+          this.toastr.error(_response.message , 'Erro ao tentar recuperar as corridas.\n');
         }
       },
       error: err => {
         this.loading = false;
         console.error(err);
-        this.toastr.error('Erro ao tentar recuperar as corridas.\n' , err.message);
+        this.toastr.error(err.message , 'Erro ao tentar recuperar as corridas.\n');
       }
     })
   }
@@ -81,8 +81,11 @@ export class RacesComponent {
   onFileSelected(event: any) {
 
     const file:File = event.target.files[0];
-
-    if (file) {
+    if(file.type !== 'text/plain'){
+      this.toastr.error('O arquivo de upload deve ser um arquivo do formato txt ou csv.' , 'Formato Incorreto');
+      this.router.navigate(['/']);
+    }
+    else if (file) {
         this.fileName = file.name;
         const formData = new FormData();
         formData.append("thumbnail", file);
@@ -102,20 +105,22 @@ export class RacesComponent {
                 if(_response.success){
                   this.races = [];
                   this.listRaces();
-                  this.toastr.success(`Feito Upload da nova corrida!\n` , _response.message);
+                  this.toastr.success(_response.message , `Feito Upload da nova corrida!\n`);
+                  this.openPage(_response.item.raceId);
                 }
                 else{
-                  this.toastr.error('Erro ao tentar fazer o upload da corrida.\n' , _response.message);
+                  this.toastr.error(_response.message , 'Erro ao tentar fazer o upload da corrida.\n');
+                  this.router.navigate(['/']);
                 }
               },
               error: err => {
                 this.loading = false;
                 console.error(err);
-                this.toastr.error(`Erro ao tentar fazer o upload da corrida.` , err.message);
+                this.toastr.error(err.message , `Erro ao tentar fazer o upload da corrida.`);
+                this.router.navigate(['/']);
               }
             })
         };
     }
   }
-
 }
