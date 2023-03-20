@@ -63,3 +63,6 @@ Aplicação utilizando Angular 15 com TypeScript no frontend, com .NET 6 no back
   - O arquivo de log deverá ser um arquivo separado por ";", conforme o arquivo de exemplo [/RaceLogFile.txt](./RaceLogFile.txt)<br/>
   - Ao fazer o upload do arquivo de log, o sistema ira processar esse arquivo, agrupar as informações dos corredores e das voltas feitas, ordenar por ondem de chegada, e armazenar no banco.<br/>
   - Sera criada uma nova corrida a partir do arquivo que foi carregado, dessa forma o usuario poderá clicar em "VER CLASSIFICAÇÃO" e será redirecionado para uma tela com a classificação dos pilotos desse corrida.<br/>
+
+![system](https://user-images.githubusercontent.com/60857500/226248548-af5bb979-e753-46a1-b6d2-7dca2cb06b36.gif)
+
