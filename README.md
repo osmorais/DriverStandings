@@ -1,24 +1,27 @@
 # DriverStandings
-Aplicação utilizando Angular 15 com TypeScript no frontend, com .NET 6 no backend e um banco de dados postgreSQL.
+Aplicação utilizando Angular com TypeScript no frontend, com .NET 6 no backend e um banco de dados postgreSQL.
 
+    Angular CLI: 15.2.4
+    Node: 18.15.0
+    Package Manager: npm 9.5.0
+    OS: win32 x64
+    Angular: 15.2.3
+    
 # Descrição do projeto
 - O que o aplicativo faz?<br/><br/>
     O usuario faz o upload de um arquivo de log de uma corrida de Kart, a partir desse arquivo o sistema gera a classificação dos corredores.
 
 - Sobre as tecnologias utilizadas<br/><br/>
-    FRONTEND: No frontend foi usado o Angular 15 juntamente com typescript, os componentes que foram criados foram: Race (Corridas geradas a partir do arquivo de log), Standings (Classificação da corrida selecionada, mostrando o nome, codigo, tempo e voltas completadas do pilo) e a Home que foi usada apenas para indexar a pagina caso fosse necessário alterar o funcionamento do frontend.
+    FRONTEND: No frontend foi usado o Angular juntamente com typescript, os componentes que foram criados foram: Race (Corridas geradas a partir do arquivo de log), Standings (Classificação da corrida selecionada, mostrando o nome, codigo, tempo e voltas completadas do pilo) e a Home que foi usada apenas para indexar a pagina caso fosse necessário alterar o funcionamento do frontend.
     <br/><br/>
     BACKEND: No backend foi utilizado .NET 6, com conexão com o banco de dados PostgreSQL utilizando a classe NpgsqlConnection da biblioteca Npgsql. Foi adotada arquitetura em camadas, seguinda a ideia do DDD, dessa forma, a camada Api guarda as constrollers onde ficam os endpoints, da controller passamos para business (ou service) que fica na camada de application, responsavel por trabalhar os dados para conseguir retornar o que é desejado para esse processamento, na camada Domain, foi guardado nossas models, ou seja, as classes principais relacionadas as regras de negócio do objetivo do sistema, e na camada InfraData temos as classes que fazem consultas e alterações no banco de dados, nesse caso segui o padrão DAO (Data Access Object).
+    <br/><br/>
+    TESTES: Utilizado o XUnit para criação dos testes unitarios na camada modelo, verificando as validações que são feitas na classe e se continuam validando dados inseridos de maneira incorreta.
 
 # Instalação e execução do projeto
 - Instalação Frontend:
+  - Realizar o download e instalação do node v18.15
 ``` 
-    Angular CLI: 15.2.4
-    Node: 18.15.0
-    Package Manager: npm 9.5.0
-    OS: win32 x64
-
-    download node v18.15
     npm install -g @angular/cli
     npm install --save ngx-bootstrap 
     npm install bootstrap@4
