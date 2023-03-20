@@ -15,6 +15,8 @@ Aplicação utilizando Angular com TypeScript no frontend, com .NET 6 no backend
     FRONTEND: No frontend foi usado o Angular juntamente com typescript, os componentes que foram criados foram: Race (Corridas geradas a partir do arquivo de log), Standings (Classificação da corrida selecionada, mostrando o nome, codigo, tempo e voltas completadas do pilo) e a Home que foi usada apenas para indexar a pagina caso fosse necessário alterar o funcionamento do frontend.
     <br/><br/>
     BACKEND: No backend foi utilizado .NET 6, com conexão com o banco de dados PostgreSQL utilizando a classe NpgsqlConnection da biblioteca Npgsql. Foi adotada arquitetura em camadas, seguinda a ideia do DDD, dessa forma, a camada Api guarda as constrollers onde ficam os endpoints, da controller passamos para business (ou service) que fica na camada de application, responsavel por trabalhar os dados para conseguir retornar o que é desejado para esse processamento, na camada Domain, foi guardado nossas models, ou seja, as classes principais relacionadas as regras de negócio do objetivo do sistema, e na camada InfraData temos as classes que fazem consultas e alterações no banco de dados, nesse caso segui o padrão DAO (Data Access Object).
+    <br/><br/>
+    TESTES: Utilizado o XUnit para criação dos testes unitarios na camada modelo, verificando as validações que são feitas na classe e se continuam validando dados inseridos de maneira incorreta.
 
 # Instalação e execução do projeto
 - Instalação Frontend:
