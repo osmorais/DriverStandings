@@ -48,10 +48,10 @@ Aplicação utilizando Angular 15 com TypeScript no frontend, com .NET 6 no back
    
 
   -  Em seguida, para inicializar o frontend basta executar o comando abaixo:<br/>
-     > necessário estar dentro do diretorio \Angular.DriverStandings\DriverStandings-App.
+     > necessário estar dentro do diretorio \Angular.DriverStandings\DriverStandings-App.<br/>
      ```cd Angular.DriverStandings\DriverStandings-App```<br/>
      ```npm start```<br/><br/>
-     
+
   -  O swagger da aplicação estará disponivel em:
      ```https://localhost:7098/swagger/index.html```
   
