@@ -111,7 +111,7 @@ export class RacesComponent {
               error: err => {
                 this.loading = false;
                 console.error(err);
-                this.toastr.success(`Erro ao tentar fazer o upload da corrida.` , err.message);
+                this.toastr.error(`Erro ao tentar fazer o upload da corrida.` , err.message);
               }
             })
         };
