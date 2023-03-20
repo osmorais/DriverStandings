@@ -16,7 +16,7 @@ export class RaceService {
     return this.http.get<RaceResponseList>(`${this.baseURL}/Race/ListRaces`);
   }
 
-  postRegra(fileValue: string): Observable<RaceResponse>{
+  uploadFile(fileValue: string): Observable<RaceResponse>{
     let raceRequest = new RaceRequest();
     raceRequest.Item = fileValue;
     return this.http.post<RaceResponse>(`${this.baseURL}/Race/UploadRaceByFile`, raceRequest);
@@ -27,5 +27,12 @@ export class RaceService {
     raceRequest.Item = "";
     raceRequest.RaceID = raceid;
     return this.http.post<RaceResponse>(`${this.baseURL}/Race/GetRaceById`, raceRequest);
+  }
+
+  deleteRace(race: Race): Observable<RaceResponse>{
+    let raceRequest = new RaceRequest();
+    raceRequest.Item = "";
+    raceRequest.RaceID = race.raceId;
+    return this.http.post<RaceResponse>(`${this.baseURL}/Race/DeleteRace`, raceRequest);
   }
 }

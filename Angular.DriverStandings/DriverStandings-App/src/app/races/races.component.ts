@@ -31,22 +31,49 @@ export class RacesComponent {
   redirectTo(uri: string){
     this.router.navigateByUrl('/#', {skipLocationChange: true}).then(() =>
     this.router.navigate([uri]));
- }
+  }
+
+  public deleteRace(race: Race) : void{
+    this.loading = true;
+    this.raceService.deleteRace(race).subscribe({
+      next: _response => {
+        this.loading = false;
+
+        if(_response.success){
+          this.races = [];
+          this.listRaces();
+          this.toastr.success(`Corrida excluida!\n` , _response.message);
+        }
+        else{
+          this.toastr.error('Erro ao tentar excluir a corrida.\n' , _response.message);
+        }
+      },
+      error: err => {
+        this.loading = false;
+        console.error(err);
+        this.toastr.error('Erro ao tentar excluir a corrida.\n' , err.message);
+      }
+    })
+  }
 
   public listRaces() : void{
     this.loading = true;
     this.raceService.listRaces().subscribe({
       next: _response => {
-        this.races = _response.items;
         this.loading = false;
-        console.log(this.races);
-        this.toastr.success(`Corridas retornadas com sucesso!`);
+
+        if(_response.success){
+          this.races = _response.items;
+          this.toastr.success(`Corridas Recuperadas!\n` , _response.message);
+        }
+        else{
+          this.toastr.error('Erro ao tentar recuperar as corridas.\n' , _response.message);
+        }
       },
       error: err => {
-        // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
         this.loading = false;
         console.error(err);
-        this.toastr.error('Erro ao tentar recuperar as corridas.');
+        this.toastr.error('Erro ao tentar recuperar as corridas.\n' , err.message);
       }
     })
   }
@@ -69,19 +96,22 @@ export class RacesComponent {
             const text = e.target.result;
             console.log(text);
 
-            this.raceService.postRegra(text).subscribe({
+            this.raceService.uploadFile(text).subscribe({
               next: _response => {
-                // this.races = _response.Item;
-                this.races = [];
-                this.listRaces();
                 this.loading = false;
-                this.toastr.success(`Upload da nova corrida feito com sucesso!`);
+                if(_response.success){
+                  this.races = [];
+                  this.listRaces();
+                  this.toastr.success(`Feito Upload da nova corrida!\n` , _response.message);
+                }
+                else{
+                  this.toastr.error('Erro ao tentar fazer o upload da corrida.\n' , _response.message);
+                }
               },
               error: err => {
-                // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
                 this.loading = false;
                 console.error(err);
-                this.toastr.success(`Erro ao tentar fazer o upload da corrida.`);
+                this.toastr.success(`Erro ao tentar fazer o upload da corrida.` , err.message);
               }
             })
         };

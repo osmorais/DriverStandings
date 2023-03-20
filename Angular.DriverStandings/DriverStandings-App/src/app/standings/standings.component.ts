@@ -32,16 +32,20 @@ export class StandingsComponent {
     this.loading = true;
     this.raceService.getRace(this.raceId).subscribe({
       next: _response => {
-        this.race = _response.item;
         this.loading = false;
-        console.log(this.race);
-        this.toastr.success(`Classificações retornadas com sucesso!`);
+        if(_response.success){
+          this.race = _response.item;
+          this.toastr.success(`classificações recuperadas!\n` , _response.message);
+        }
+        else{
+          this.toastr.error('Erro ao tentar recuperar as classificações.\n' , _response.message);
+        }
       },
       error: err => {
         // this.toastr.error('Não foi possível recuperar os dados do Cosumo.', 'Verifique sua conexão');
         this.loading = false;
         console.error(err);
-        this.toastr.error('Erro ao tentar recuperar as classificações.');
+        this.toastr.error('Erro ao tentar recuperar as classificações.\n' , err.message);
       }
     })
   }

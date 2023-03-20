@@ -2,6 +2,7 @@
 using DotNet6.DriverStandings.Application.Business.Interface;
 using DotNet6.DriverStandings.Domain.DAO;
 using DotNet6.DriverStandings.Domain.Model;
+using DotNet6.DriverStandings.Infra.Data.DAO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,18 @@ namespace DotNet6.DriverStandings.Application.Business
             var races = new Infra.Data.DAO.RaceDAO().ListRaces();
 
             return races;
+        }
+
+        public void DeleteRaceById(Race race)
+        {
+            race = this.GetRaceById(race);
+
+            foreach (Driver driver in race.Drivers)
+            {
+                new Infra.Data.DAO.LapDAO().DeleteLapsByDriverId(driver.DriverId);
+            }
+            new Infra.Data.DAO.DriverDAO().DeleteDriversByRaceId(race.RaceId);
+            new Infra.Data.DAO.RaceDAO().DeleteRaceById(race);
         }
     }
 }

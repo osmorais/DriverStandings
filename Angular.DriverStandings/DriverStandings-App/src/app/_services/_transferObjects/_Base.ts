@@ -8,7 +8,7 @@ export class _BaseRequest {
 
 export class _BaseResponse {
   public item: any
-  public succsess: boolean = false;
+  public success: boolean = false;
   public message: string = '';
 
   constructor(){
@@ -17,7 +17,7 @@ export class _BaseResponse {
 
 export class _BaseListResponse<T> {
     public items: Array<T> = []
-    public succsess: boolean = false;
+    public success: boolean = false;
     public message: string = '';
 
     constructor(){

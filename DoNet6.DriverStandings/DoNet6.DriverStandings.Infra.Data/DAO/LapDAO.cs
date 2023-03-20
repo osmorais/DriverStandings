@@ -16,6 +16,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
         private static readonly string SELECT_LAPS_BY_DRIVER_ID = "SELECT * FROM GetLapsByDriverId({0});";
         private static readonly string SELECT_LAP_BY_ID = "SELECT * FROM GetLapById({0});";
         private static readonly string INSERT_LAP = "INSERT INTO LAP (LAPTIME, AVERAGESPEED, LAPNUMBER, DRIVERID) VALUES (:laptime, :averagespeed, :lapnumber, :driverid) {0};";
+        private static readonly string DELETE_LAPS_BY_DRIVERID = "DELETE FROM LAP WHERE DRIVERID = :driverid;";
 
         public void CreateLap(Lap lap, int driverid)
         {
@@ -35,6 +36,38 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
                         pgsqlcommand.Parameters.Add(new NpgsqlParameter("lapnumber", lap.LapNumber));
                         pgsqlcommand.Parameters.Add(new NpgsqlParameter("driverid", driverid));
                         lap.LapId = (int)pgsqlcommand.ExecuteScalar();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
+        }
+
+        public void DeleteLapsByDriverId(int driverId)
+        {
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(DELETE_LAPS_BY_DRIVERID);
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("driverid", driverId));
+                        pgsqlcommand.ExecuteNonQuery();
                     }
                 }
             }

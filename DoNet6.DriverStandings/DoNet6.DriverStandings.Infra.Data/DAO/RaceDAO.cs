@@ -19,6 +19,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
         private static readonly string SELECT_RACES = "SELECT * FROM ListRaces();";
         private static readonly string SELECT_RACE_BY_ID = "SELECT * FROM GetRaceById({0});";
         private static readonly string INSERT_RACE = "INSERT INTO RACE (NUMBEROFLAPS) VALUES (:numberoflaps) {0};";
+        private static readonly string DELETE_RACE = "DELETE FROM RACE WHERE RACEID = :raceid;";
 
         public List<Race> ListRaces()
         {
@@ -123,6 +124,38 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
             }
 
             return Domain.Util.Utils.DataTableToObject<Race>(dt);
+        }
+
+        public void DeleteRaceById(Race race)
+        {
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(DELETE_RACE);
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("raceid", race.RaceId));
+                        pgsqlcommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
         }
     }
 }

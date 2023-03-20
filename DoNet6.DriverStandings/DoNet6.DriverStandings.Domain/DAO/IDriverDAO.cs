@@ -13,5 +13,6 @@ namespace DotNet6.DriverStandings.Domain.DAO
         public Driver GetDriver(Driver driver);
         public List<Driver> ListDrivers();
         public List<Driver> GetDriversByRaceId(int RaceId);
+        public void DeleteDriversByRaceId(int RaceId);
     }
 }

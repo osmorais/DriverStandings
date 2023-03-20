@@ -17,6 +17,7 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
         private static readonly string SELECT_DRIVER_BY_ID = "SELECT * FROM GetDriverById({0});";
         private static readonly string SELECT_DRIVERS_BY_RACEID = "SELECT * FROM GetDriversByRaceId({0});";
         private static readonly string INSERT_DRIVER = "INSERT INTO DRIVER (DRIVERCODE, NAME, TOTALTIME, RACEID) VALUES (:drivercode, :name, :totaltime, :raceid) {0};";
+        private static readonly string DELETE_DRIVERS_BY_RACEID = "DELETE FROM DRIVER WHERE RACEID = :raceid;";
         public void CreateDriver(Driver driver, int raceid)
         {
             NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
@@ -157,6 +158,38 @@ namespace DotNet6.DriverStandings.Infra.Data.DAO
             }
 
             return Domain.Util.Utils.DataTableToListDriver(dt);
+        }
+
+        public void DeleteDriversByRaceId(int raceid)
+        {
+            NpgsqlConnection pgsqlConnection = new Infra.Data.Util.DatabaseConnection().GetConnection();
+            try
+            {
+                using (pgsqlConnection)
+                {
+                    pgsqlConnection.Open();
+
+                    string insertQuery = string.Format(DELETE_DRIVERS_BY_RACEID);
+
+                    using (NpgsqlCommand pgsqlcommand = new NpgsqlCommand(insertQuery, pgsqlConnection))
+                    {
+                        pgsqlcommand.Parameters.Add(new NpgsqlParameter("raceid", raceid));
+                        pgsqlcommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
         }
     }
 }

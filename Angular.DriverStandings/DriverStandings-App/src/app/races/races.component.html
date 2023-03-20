@@ -24,6 +24,7 @@
           <th>#</th>
           <th>Numero de Voltas</th>
           <th>Detalhe</th>
+          <th></th>
         </tr>
       </thead>
       <tbody *ngIf="races && races.length">
@@ -33,6 +34,11 @@
           <td>
             <button type="button" class="btn btn-outline-primary" (click)="openPage(race.raceId)">
               VER CLASSIFICAÇÃO
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteRace(race)">
+              REMOVER CORRIDA
             </button>
           </td>
         </tr>

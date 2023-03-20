@@ -12,5 +12,6 @@ namespace DotNet6.DriverStandings.Application.Business.Interface
         public List<Race> ListRaces();
         public Race UploadRace(string fileString);
         public Race GetRaceById(Race race);
+        public void DeleteRaceById(Race race);
     }
 }

@@ -86,5 +86,33 @@ namespace DotNet6.DriverStandings.Api.Controllers
                 return raceResponse;
             }
         }
+
+        [HttpPost]
+        public TransferObjects.RaceResponse DeleteRace([FromBody] RaceRequest raceRequest)
+        {
+            TransferObjects.RaceResponse raceResponse = new TransferObjects.RaceResponse();
+
+            try
+            {
+                if (raceRequest.RaceId <= 0)
+                {
+                    raceResponse.Message = "RaceId invalido.";
+                    raceResponse.Success = false;
+                    return raceResponse;
+                }
+
+                new Application.Business.RaceBusiness().DeleteRaceById(new Domain.Model.Race() { RaceId = raceRequest.RaceId });
+                raceResponse.Success = true;
+                raceResponse.Message = "Sucesso ao deletar a corrida.";
+
+                return raceResponse;
+            }
+            catch (Exception ex)
+            {
+                raceResponse.Message = $"Request com erro. Menssagem: {ex.Message}";
+                raceResponse.Success = false;
+                return raceResponse;
+            }
+        }
     }
 }
